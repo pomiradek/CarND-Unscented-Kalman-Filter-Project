@@ -28,10 +28,10 @@ UKF::UKF() {
   P_ = MatrixXd(n_x_, n_x_);
 
   // Process noise standard deviation longitudinal acceleration in m/s^2
-  std_a_ = 3;
+  std_a_ = 0.6;
 
   // Process noise standard deviation yaw acceleration in rad/s^2
-  std_yawdd_ = 1;
+  std_yawdd_ = 0.3;
   
   //DO NOT MODIFY measurement noise values below these are provided by the sensor manufacturer.
   // Laser measurement noise standard deviation position1 in m
@@ -279,6 +279,14 @@ void UKF::UpdateLidar(MeasurementPackage meas_package) {
 
   You'll also need to calculate the lidar NIS.
   */
+
+    // TODO Next steps:
+    /**
+     * LIDAR here is linear. This means that we do not need to use the unscented transformation here. Using the linear Kalman filter update
+     * equations just like in the EKF project should give the same results and has the advantage to require less computational resources.
+     * Thus, better Real Time performance.
+     */
+
     //set measurement dimension, lidar can measure px, py
     int n_z = 2;
 
